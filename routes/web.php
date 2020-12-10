@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SujetController;
+use App\Http\Controllers\CommentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,5 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::post('/comments/{sujet}', 'CommentController@store')->name('comments.store');
 
+Route::get('/', 'SujetController@index')->name('sujet.index');
+
+Route::resource('sujets', 'SujetController')->except(['index']);
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
