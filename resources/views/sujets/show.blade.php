@@ -13,35 +13,23 @@
             </div>
         </div>
     </div>
-
-    <div class="d-flex justify-content-center mt-2">
-        @can('update', $sujet)
-            <div class="mr-1">
-                <a href="{{route('sujets.edit', $sujet)}}" class="btn btn-warning">Editer le sujet</a>
-            </div>
-        @endcan
-        @can('delete', $sujet)
-        <form action="{{route('sujets.destroy', $sujet)}}" method="POST"> 
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Supprimer</button>
-        </form>
-        @endcan
-    </div>
     <hr>
-    <h5>Commentaires</h5>
+    <h5>Commentaires ({{count($sujet->comments)}})</h5>
+
     @forelse($sujet->comments as $comment)
+
         <div class="card mb-2">
             <div class="card-body">
                 {{$comment->contenu }}
                 <div class="d-flex justify-content-between align-items-center">
-                    <small>Posté le {{ $comment ->created_at->format('d/m/y ')}}</small>
-                    <span class="badge badge-primary">{{$comment->user->name}}</span>
-                    <form action="{{route('comments.destroy', $sujet)}}" method="POST"> 
+                    <small>Posté le {{ $comment ->created_at->format('d/m/y ')}} par {{$comment->user->name}}</small>
+                    @can('delete', $comment)
+                    <form action="{{route('comments.destroy', $comment)}}" method="POST"> 
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -58,15 +46,14 @@
             <label for="content">Votre commentaire </label>
             <textarea class="form-control @error ('contenu') is-invalid @enderror" name="contenu" id="contenu" row="5"></textarea> 
             @error('content')
-                <div class="invalid-feedback">{{$errors->first('contenu')}}
+            <div class="invalid-feedback">{{$errors->first('contenu')}}
             @enderror
-        </div>
-        <div class="d-flex justify-content-center mt-2">
-            <button type="submit" class="btn btn-primary">Soumettre mon commentaire</button>
-        </div>
             </div>
+            <div class="d-flex justify-content-center mt-2">
+                <button type="submit" class="btn btn-primary">Soumettre mon commentaire</button>
+            </div>
+        </div>
     </form>
- 
 </div>
 
 @endsection

@@ -9,7 +9,7 @@ class Sujet extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = [];    
 
     public function user()
     {
@@ -18,6 +18,9 @@ class Sujet extends Model
 
     public function comments()
     {
+
         return $this->morphMany('App\Models\Comment', 'commentable')->latest();
+
     }
+
 }

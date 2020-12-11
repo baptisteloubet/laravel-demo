@@ -9,8 +9,8 @@
             <h4><a href="{{route('sujets.show', $sujet)}}">{{$sujet->titre}}</a></h4>
             <p>{{$sujet->contenu}}</p>
             <div class="d-flex justify-content-between align-items-center">
-                <small>Posté le {{ $sujet ->created_at->format('d/m/y')}}</small>
-                <span class="badge badge-primary">{{$sujet->user->name}}</span>
+                <small>Posté le {{ $sujet ->created_at->format('d/m/y')}} |  {{count($sujet->comments)}} commentaires </small>
+                <span class="badge badge-primary">Posté par {{$sujet->user->name}}</span>
             </div>
         </div>
         @endforeach

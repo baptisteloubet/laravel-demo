@@ -16,11 +16,6 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-Route::post('/comments/{sujet}', 'CommentController@store')->name('comments.store');
-
-Route::delete('/comments', 'CommentController@destroy')->name('comments.destroy');
-
-
 Route::get('/', 'SujetController@index')->name('sujet.index');
 
 Route::resource('sujets', 'SujetController')->except(['index']);
@@ -29,3 +24,7 @@ Route::resource('sujets', 'SujetController')->except(['index']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/comments/{sujet}', 'CommentController@store')->name('comments.store');
+
+Route::delete('/comments/{comment}', 'CommentController@destroy')->name('comments.destroy');
