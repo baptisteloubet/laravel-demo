@@ -20,7 +20,6 @@ Route::get('/', 'SujetController@index')->name('sujet.index');
 
 Route::resource('sujets', 'SujetController')->except(['index']);
 
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

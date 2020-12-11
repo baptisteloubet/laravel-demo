@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -14,16 +15,15 @@
                         </div>
                     @endif
 
-                    @foreach (Auth()->user()->sujets as $sujet)
+                    @forelse (Auth()->user()->sujets as $sujet)
+                    
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-center ">
                                     <div class="pt-3">
-                                        "{{$sujet->titre}}" a été créé le {{Carbon\Carbon::parse
-                                        ($sujet->created_at)->format('d/m/y')}}
+                                        "{{$sujet->titre}}" a été créé le {{($sujet->created_at)->format('d/m/y')}}
                                     </div>
-                                    <div class="ml-2 pt-2">
-                                        
+                                    <div class="ml-2 pt-2"> 
                                     </div>
                                     <div class="d-flex justify-content-center mt-2">
                                         <div class="mr-1">
@@ -42,7 +42,11 @@
                             </div>
                         </div>
 
-                    @endforeach
+                    @empty
+
+                    <div class="alert alert-info">Aucun post</div>
+
+                    @endforelse
 
                 </div>
             </div>

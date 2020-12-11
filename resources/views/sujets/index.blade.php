@@ -4,7 +4,9 @@
 
 <div class="container">
     <div class="list-group">
-        @foreach($sujets as $sujet)
+
+        @forelse($sujets as $sujet)
+
         <div class="list-group-item">
             <h4><a href="{{route('sujets.show', $sujet)}}">{{$sujet->titre}}</a></h4>
             <p>{{$sujet->contenu}}</p>
@@ -13,7 +15,13 @@
                 <span class="badge badge-primary">Posté par {{$sujet->user->name}}</span>
             </div>
         </div>
-        @endforeach
+
+        @empty
+
+        <div class="alert alert-info">Aucun Post n'a été publié</div>
+
+        @endforelse
+        
     </div>
 </div>
 
