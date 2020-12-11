@@ -17,7 +17,7 @@
         </div>
 
         <div class="form-group">
-            <label for="contenu">Contenu : </label>
+            <label for="contenu">Lien Url: </label>
             <textarea class="form-control @error('contenu') is-invalid @enderror" name="contenu" id="contenu">{{$sujet->contenu}}</textarea>
             @error('contenu')
             <div class="invalid-feedback">{{$errors->first('contenu')}}</div>

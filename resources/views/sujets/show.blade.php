@@ -6,10 +6,10 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title"> {{$sujet->titre}}</h5>
-            <p>{{$sujet->contenu}}</p>
+            <p><a href="{{$sujet->contenu}}">{{$sujet->contenu}}</a></p>
             <div class="d-flex justify-content-between align-items-center">
                 <small>Posté le {{ $sujet ->created_at->format('d/m/y à H:m')}}</small>
-                <span class="badge badge-primary">{{$sujet->user->name}}</span>
+                <span class="badge badge-primary">Posté par {{$sujet->user->name}}</span>
             </div>
         </div>
     </div>

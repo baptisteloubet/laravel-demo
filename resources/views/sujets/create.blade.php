@@ -15,8 +15,8 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="contenu">Contenu : </label>
-            <textarea class="form-control @error('contenu') is-invalid @enderror" name="contenu" id="contenu"></textarea>
+            <label for="contenu">Lien Url : </label>
+            <textarea href class="form-control @error('contenu') is-invalid @enderror" name="contenu" id="contenu"></textarea>
             @error('contenu')
             <div class="invalid-feedback">{{$errors->first('contenu')}}</div>
             @enderror
