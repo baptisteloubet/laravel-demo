@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function _construct()
+    public function __construct()
     {
         $this ->middleware('auth');
 
@@ -28,5 +28,13 @@ class CommentController extends Controller
         $sujet->comments()->save($comment);
 
         return redirect()->route('sujets.show', $sujet);
+    }
+
+    public function destroy(Sujet $sujet, Comment $comment)
+    {
+        
+        Comment::destroy($comment);
+
+        return back();
     }
 }

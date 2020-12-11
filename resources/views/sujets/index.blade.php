@@ -6,10 +6,10 @@
     <div class="list-group">
         @foreach($sujets as $sujet)
         <div class="list-group-item">
-            <h4><a href="{{route('sujets.show', $sujet)}}">{{$sujet->title}}</a></h4>
-            <p>{{$sujet->title}}</p>
+            <h4><a href="{{route('sujets.show', $sujet)}}">{{$sujet->titre}}</a></h4>
+            <p>{{$sujet->contenu}}</p>
             <div class="d-flex justify-content-between align-items-center">
-                <small>Posté le {{ $sujet ->created_at->format('d/m/y à H:m')}}</small>
+                <small>Posté le {{ $sujet ->created_at->format('d/m/y')}}</small>
                 <span class="badge badge-primary">{{$sujet->user->name}}</span>
             </div>
         </div>

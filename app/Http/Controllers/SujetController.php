@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class SujetController extends Controller
 {
 
-    public function _construct()
+    public function __construct()
     {
         $this->middleware('auth')->except(['index','show']);
     }
@@ -73,6 +73,8 @@ class SujetController extends Controller
      */
     public function edit(Sujet $sujet)
     {
+        $this->authorize('update', $sujet);
+
         return view('sujets.edit', compact('sujet'));
     }
 
@@ -85,6 +87,8 @@ class SujetController extends Controller
      */
     public function update(Request $request, Sujet $sujet)
     {
+        $this->authorize('update', $sujet);
+
         $data= $request->validate([
             'titre' =>'required|min:5',
             'contenu'=>'required|min:10'
@@ -103,6 +107,8 @@ class SujetController extends Controller
      */
     public function destroy(Sujet $sujet)
     {
+        $this->authorize('update', $sujet);
+        
         Sujet::destroy($sujet->id);
 
         return redirect('/');

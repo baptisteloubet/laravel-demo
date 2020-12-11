@@ -12,14 +12,21 @@
                 <span class="badge badge-primary">{{$sujet->user->name}}</span>
             </div>
         </div>
-        <div class="d-flex justify-content-between align-items-center">
-            <a href="{{route('sujets.edit', $sujet)}}" class="btn btn-warning">Editer le sujet</a>
-            <form action="{{route('sujets.destroy', $sujet)}}" method="POST"> 
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Supprimer</button>
-            </form>
-        </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-2">
+        @can('update', $sujet)
+            <div class="mr-1">
+                <a href="{{route('sujets.edit', $sujet)}}" class="btn btn-warning">Editer le sujet</a>
+            </div>
+        @endcan
+        @can('delete', $sujet)
+        <form action="{{route('sujets.destroy', $sujet)}}" method="POST"> 
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+        @endcan
     </div>
     <hr>
     <h5>Commentaires</h5>
@@ -30,6 +37,11 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <small>Posté le {{ $comment ->created_at->format('d/m/y ')}}</small>
                     <span class="badge badge-primary">{{$comment->user->name}}</span>
+                    <form action="{{route('comments.destroy', $sujet)}}" method="POST"> 
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -49,8 +61,9 @@
                 <div class="invalid-feedback">{{$errors->first('contenu')}}
             @enderror
         </div>
-
-        <button type="submit" class="btn btn-primary">Soumettre mon commentaire</button>
+        <div class="d-flex justify-content-center mt-2">
+            <button type="submit" class="btn btn-primary">Soumettre mon commentaire</button>
+        </div>
             </div>
     </form>
  

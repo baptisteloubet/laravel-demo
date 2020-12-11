@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h1> Créer un sujet </h1>
+    <h1> Créer un Post </h1>
     <hr>
     <form action="{{route('sujets.store')}}" method="POST">
     @csrf 
@@ -22,7 +22,7 @@
         <div class="invalid-feedback">{{$errors->first('contenu')}}</div>
         @enderror
     </div>
-    <button type="submit" class="btn btn-primary"> Créer le sujet </button>  
+    <button type="submit" class="btn btn-primary"> Créer le post </button>  
 
     </form> 
 </div>
